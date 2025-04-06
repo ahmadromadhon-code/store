@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# macOS
+.DS_Store
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# Build folders (jika pakai framework frontend)
+dist/
+build/
+.next/
+out/
+
+# Cache
+.cache/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Sistem
+Thumbs.db
