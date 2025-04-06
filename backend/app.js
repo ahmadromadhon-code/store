@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const app = express();
 const connectDB = require('./db');
@@ -7,34 +6,51 @@ const productRoutes = require('./routes/productRoutes');
 const cors = require('cors');
 const path = require('path');
 
-// Koneksi Database
-connectDB(process.env.MONGODB_URI);  // Pastikan nama variabel sesuai
+// 1. Koneksi Database
+connectDB(process.env.MONGODB_URI).catch(err => {
+  console.error('Database connection failed:', err);
+  process.exit(1);
+});
 
-// Middleware
+// 2. Middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://store-three-blond.vercel.app' 
-    : 'http://localhost:3000'
+  origin: [
+    'https://store-three-blond.vercel.app',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 app.use(express.json());
 
-// Routes
-app.use('/api/products', productRoutes);
+// 3. API Routes (SEBELUM static files)
+app.use('/api', productRoutes);
 
-// Static Files
-app.use(express.static(path.join(__dirname, '../frontend')));
+// 4. Static Files
+app.use(express.static(path.join(__dirname, '../../frontend')));
 
-// Fallback ke index.html
+// 5. Fallback (SETELAH static)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(__dirname, '../../frontend/index.html'));
 });
 
-// Error Handling
+// 6. Error Handling
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
+  console.error('⚠️ Error:', err.stack);
+  res.status(500).json({ 
+    error: process.env.NODE_ENV === 'development' 
+      ? err.message 
+      : 'Server Error' 
+  });
 });
 
-// Server
+// 7. Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const server = app.listen(PORT, () => 
+  console.log(`🚀 Server running on port ${PORT}`)
+);
+
+// Handle unhandled rejections
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+  server.close(() => process.exit(1));
+});
