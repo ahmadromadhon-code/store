@@ -19,6 +19,10 @@
       "src": "/css/(.*)",
       "dest": "frontend/css/$1"
     },
+
+      "src": "/js/(.*)",  // Route khusus file JS
+      "dest": "frontend/js/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "frontend/index.html"
