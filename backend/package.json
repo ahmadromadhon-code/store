@@ -8,8 +8,7 @@
         "dev": "nodemon app.js"
     },
     "engines": {
-        "node": "18.x",
-        "npm": "9.x"
+        "node": "22.x"
     },
     "dependencies": {
         "cloudinary": "^1.41.3",
