@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore - Toko Baju Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">FashionStore</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#" id="admin-login">Admin</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Koleksi Baju Terbaru 2025</h1>
+            <p>Temukan gaya yang sempurna untuk setiap kesempatan</p>
+            <a href="#products" class="btn">Lihat Koleksi</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title">Produk Kami</h2>
+        <div class="product-grid" id="product-container">
+            <!-- Produk akan dimuat secara dinamis -->
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title">Pesan Produk</h3>
+            <form id="orderForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor WhatsApp</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="size">Ukuran</label>
+                    <select id="size" required>
+                        <option value="">Pilih Ukuran</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Alamat Pengiriman</label>
+                    <textarea id="address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Jumlah</label>
+                    <input type="number" id="quantity" min="1" value="1" required>
+                </div>
+                <button type="submit" class="submit-order">Pesan Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2>Admin Panel</h2>
+            <div class="crud-actions">
+                <button class="crud-btn add-btn" id="addProductBtn">Tambah Produk</button>
+                <button class="crud-btn logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+        
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Gambar</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="adminProductTable">
+                <!-- Data produk akan dimuat di sini -->
+            </tbody>
+        </table>
+        
+        <div class="admin-form" id="productForm">
+            <h3 class="form-title" id="formTitle">Tambah Produk Baru</h3>
+            <form id="adminProductForm">
+                <input type="hidden" id="adminProductId">
+                <div class="form-group">
+                    <label for="productName">Nama Produk</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Harga</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Deskripsi</label>
+                    <textarea id="productDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Gambar Produk</label>
+                    <input type="file" id="productImage" accept="image/*">
+                    <small>Gambar akan diupload ke Cloud</small>
+                    <img id="imagePreview" style="display:none; margin-top:10px; width: 120px; height: 120px; object-fit: cover; border-radius: 10px;" />
+                </div>
+                <div class="form-group">
+                    <label for="availableSizes">Ukuran Tersedia (pisahkan dengan koma)</label>
+                    <input type="text" id="availableSizes" value="S,M,L,XL,XXL" required>
+                </div>
+                <button type="submit" class="submit-order" id="formSubmitBtn">Simpan</button>
+                <button type="button" class="submit-order" id="cancelFormBtn" style="background-color: #ccc; margin-top: 10px;">Batal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h3>FashionStore</h3>
+            <p>Toko baju online dengan kualitas terbaik dan harga terjangkau</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>© 2025 FashionStore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+</body>
+</html>
