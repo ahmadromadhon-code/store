@@ -16,7 +16,7 @@ connectDB(process.env.MONGODB_URI).catch(err => {
 app.use(cors({
   origin: [
     'https://store-three-blond.vercel.app',
-    'http://localhost:3000'
+    'http://localhost:5000'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
