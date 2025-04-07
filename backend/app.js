@@ -26,11 +26,11 @@ app.use(express.json());
 app.use('/api', productRoutes);
 
 // 4. Static Files
-app.use(express.static(path.join(__dirname, '../../frontend')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // 5. Fallback (SETELAH static)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // 6. Error Handling
