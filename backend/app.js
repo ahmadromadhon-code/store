@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // 5. Fallback (SETELAH static)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/index.html'));
+  res.sendFile(path.join(__dirname, './frontend/index.html'));
 });
 
 // 6. Error Handling
