@@ -3,8 +3,14 @@ let products = [];
 async function fetchProductsFromServer() {
     try {
         const res = await fetch('/api/products');
+        console.log('Response Status:', res.status); // Tambahkan ini
+        console.log('Response Status Text:', res.statusText); // Tambahkan ini
+        console.log('Response Headers:', res.headers); // Tambahkan ini
+        console.log('Response:', res); // Tambahkan ini
+        const text = await res.text();
+        console.log('Response Text:', text); // Tambahkan ini
         products = await res.json();
-        console.log('Produk dari server:', products); // Log tambahan untuk debug
+        console.log('Produk dari server:', products);
         loadProducts();
         loadAdminProducts();
     } catch (err) {
