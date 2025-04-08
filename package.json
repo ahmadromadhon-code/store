@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend API for the fashionstore application, handling product management, user authentication, and order processing.",
-  "main": "app.js",
+  "main": "backend/app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
