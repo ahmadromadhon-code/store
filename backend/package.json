@@ -24,6 +24,6 @@
     "nodemon": "3.0.0",
     "jest": "^29.7.0" // contoh tambahan jest.
   },
-  "author": "Your Name",
+  "author": " ahmad",
   "license": "ISC"
 }
