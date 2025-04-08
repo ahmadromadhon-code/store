@@ -13,15 +13,15 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/app.js"
-"methods": ["GET", "POST", "PUT", "DELETE"]
+      "dest": "backend/app.js",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
     },
     {
       "src": "/css/(.*)",
       "dest": "frontend/css/$1"
     },
     {
-      "src": "/js/(.*)",   
+      "src": "/js/(.*)",
       "dest": "frontend/js/$1"
     },
     {
