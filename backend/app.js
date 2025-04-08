@@ -1,4 +1,6 @@
 require('dotenv').config();
+console.log('Direktori Kerja:', __dirname);
+console.log('Jalur ke app.js:', __filename);
 const express = require('express');
 const app = express();
 const connectDB = require('./db');
