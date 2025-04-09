@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     // Gunakan environment variable untuk connection string
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/baju', {
+    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/baju', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 5000,  // Timeout setelah 5 detik
