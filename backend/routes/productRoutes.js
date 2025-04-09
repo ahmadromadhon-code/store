@@ -32,11 +32,32 @@ const handleError = (res, err, defaultMessage = 'Terjadi kesalahan') => {
 // GET all products
 router.get('/', async (req, res) => {
   try {
-    const products = await Product.find().lean();
-    res.setHeader('Content-Type', 'application/json'); // **PENTING: Tambahkan ini**
-    res.json(products);
+    const products = await Product.find({}); // .lean() dihapus kecuali benar-benar perlu
+    
+    // Debugging: Log hasil query
+    console.log('Products found:', products.length);
+    
+    // Pastikan products adalah array
+    if (!Array.isArray(products)) {
+      throw new Error('Hasil query bukan array');
+    }
+    
+    // Response final
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: products
+    });
+    
   } catch (err) {
-    handleError(res, err, 'Gagal mengambil produk');
+    console.error('Error in /api/products:', err);
+    
+    // Error response lebih informatif
+    res.status(500).json({
+      success: false,
+      error: err.message,
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
   }
 });
 
