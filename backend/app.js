@@ -7,7 +7,6 @@ const connectDB = require('./db');
 const productRoutes = require('./routes/productRoutes');
 const cors = require('cors');
 const path = require('path');
-const morgan = require('morgan'); // Tambah: Logging
 
 // 1. Koneksi Database
 connectDB(process.env.MONGO_URI)
