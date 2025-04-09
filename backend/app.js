@@ -11,7 +11,7 @@ const helmet = require('helmet'); // Tambah: Keamanan
 const morgan = require('morgan'); // Tambah: Logging
 
 // 1. Koneksi Database
-connectDB(process.env.MONGODB_URI)
+connectDB(process.env.MONGO_URI)
     .then(() => console.log('✅ Database Connected')) // Tambah: Konfirmasi
     .catch(err => {
         console.error('❌ Database Connection Failed:', err);
