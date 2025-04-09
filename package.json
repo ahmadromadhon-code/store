@@ -9,23 +9,23 @@
     "test": "jest" 
   },
   "engines": {
-    "node": "22.1.0" 
+    "node": ">=18.0.0"
   },
   "dependencies": {
-    "cloudinary": "1.41.3", 
-    "cors": "2.8.5",
-    "dotenv": "16.4.1",
-    "express": "4.18.2",
-    "mongoose": "7.8.6",
-    "multer": "1.4.5-lts.2",
-    "multer-storage-cloudinary": "4.0.0",
-    "helmet": "^7.x.x",
-    "morgan": "^1.x.x"
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.8.6",
+    "multer": "^1.4.5-lts.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "3.0.0",
-    "jest": "^29.7.0" 
+    "nodemon": "^3.0.0",
+    "jest": "^29.7.0"
   },
-  "author": " ahmad",
+  "author": "ahmad",
   "license": "ISC"
 }
