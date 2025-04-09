@@ -23,7 +23,7 @@ const connectDB = async () => {
     // Log error detail di development
     if (process.env.NODE_ENV === 'development') {
       console.error('Full Error Stack:', err.stack);
-      console.error('Connection URI:', process.env.MONGODB_URI);
+      console.error('Connection URI:', process.env.MONGO_URI);
     }
     
     process.exit(1); // Exit dengan error code
