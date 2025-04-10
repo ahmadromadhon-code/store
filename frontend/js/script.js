@@ -234,6 +234,7 @@ function editProduct(id) {
 
 
 // Handle Admin Form Submission
+// Handle Admin Form Submission
 adminProductForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -245,22 +246,41 @@ adminProductForm.addEventListener('submit', async (e) => {
     const fileInput = document.getElementById('productImage');
     const existingImageUrl = document.getElementById('imagePreview').getAttribute('data-image-url');
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('price', price);
-    formData.append('description', description);
-    formData.append('sizes', sizes);
+    let imageUrl = existingImageUrl;
 
+    // Upload ke Cloudinary kalau ada file baru
     if (fileInput.files && fileInput.files.length > 0) {
-        formData.append('image', fileInput.files[0]); // Upload baru
-    } else if (existingImageUrl) {
-        formData.append('imageUrl', existingImageUrl); // Pakai gambar lama
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        formData.append('upload_preset', 'YOUR_UPLOAD_PRESET'); // Ganti!
+
+        try {
+            const cloudRes = await fetch('https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const cloudData = await cloudRes.json();
+            imageUrl = cloudData.secure_url;
+        } catch (err) {
+            console.error('Gagal upload gambar ke Cloudinary:', err);
+            alert('Gagal upload gambar!');
+            return;
+        }
     }
 
+    // Kirim data produk ke backend
     try {
         const res = await fetch(id ? `/api/products/${id}` : '/api/products', {
             method: id ? 'PUT' : 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                price,
+                description,
+                sizes,
+                image: imageUrl
+            })
         });
 
         if (!res.ok) throw new Error('Gagal simpan produk');
@@ -268,12 +288,12 @@ adminProductForm.addEventListener('submit', async (e) => {
         alert('Produk berhasil disimpan!');
         productForm.style.display = 'none';
         fetchProductsFromServer();
-
     } catch (err) {
         console.error(err);
         alert('Gagal menyimpan produk: ' + err.message);
     }
 });
+
 
 
 
