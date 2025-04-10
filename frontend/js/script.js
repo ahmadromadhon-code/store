@@ -123,7 +123,7 @@ orderForm.addEventListener('submit', (e) => {
                    `Terima kasih.`;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/6281234567890?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/6283870109804?text=${encodedMessage}`, '_blank');
 
     orderForm.reset();
     orderModal.style.display = 'none';
