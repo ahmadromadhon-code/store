@@ -35,7 +35,7 @@ app.use(helmet()); // Sekarang sudah terdefinisi
 app.use(morgan('dev'));
 
 // 3. API Routes
-app.use('/api', productRoutes);
+app.use('/api/products', productRoutes);
 
 // 4. Static Files
 app.use(express.static(path.join(__dirname, '../frontend')));
