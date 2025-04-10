@@ -64,6 +64,8 @@ router.get('/products', async (req, res) => {
 // POST new product with image upload
 router.post('/products', upload.single('image'), async (req, res) => {
   try {
+     console.log('🖼️ FILE YANG DIUPLOAD:', req.file); // 👉 Tambahkan ini
+    console.log('📦 BODY YANG DITERIMA:', req.body);  // 👉 Tambahkan ini
     const { name, price, description, sizes = '' } = req.body;
 
     // Validasi input
