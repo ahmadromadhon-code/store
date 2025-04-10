@@ -266,6 +266,7 @@ adminProductForm.addEventListener('submit', async (e) => {
             });
 
             const cloudData = await cloudRes.json();
+            console.log('Hasil upload Cloudinary:', cloudData);
             imageUrl = cloudData.secure_url;
         } catch (err) {
             console.error('Gagal upload gambar ke Cloudinary:', err);
