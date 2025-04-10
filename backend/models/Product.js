@@ -18,14 +18,18 @@ const productSchema = new mongoose.Schema({
     default: '',
     maxlength: [1000, 'Deskripsi maksimal 1000 karakter']
   },
-  image: {
-    type: String,
-    validate: {
-      validator: function(v) {
-        return /^(https?:\/\/).+\.(jpg|jpeg|png|webp)$/i.test(v);
-      },
-      message: props => `${props.value} bukan URL gambar yang valid!`
-    }
+ image: {
+  type: String,
+  validate: {
+    validator: function (v) {
+      // Izinkan kosong/null, tapi validasi jika ada nilai
+      if (!v) return true;
+      return /^(https?:\/\/).+\.(jpg|jpeg|png|webp)$/i.test(v);
+    },
+    message: props => `${props.value} bukan URL gambar yang valid!`
+  }
+}
+
   },
   imageDeleteHash: {
     type: String,
