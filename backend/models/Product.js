@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema({
     },
     message: props => `${props.value} bukan URL gambar yang valid!`
   }
-}
+
 
   },
   imageDeleteHash: {
