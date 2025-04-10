@@ -90,7 +90,7 @@ router.post('/products',  async (req, res) => {
 });
 
 // PUT update product
-router.put('/products/:id', upload.single('image'), async (req, res) => {
+router.put('/products/:id',  async (req, res) => {
   try {
     const { name, price, description, sizes = '' } = req.body;
 
