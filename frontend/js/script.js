@@ -259,7 +259,7 @@ adminProductForm.addEventListener('submit', async (e) => {
         formData.append('upload_preset', 'ml_default'); // Ganti!
 
         try {
-            const cloudRes = await fetch('https://api.cloudinary.com/v2/dcza1lxj0/upload', {
+            const cloudRes = await fetch('https://api.cloudinary.com/v1_1/dcza1lxj0/image/upload', {
                 method: 'POST',
                 body: formData
             });
