@@ -59,8 +59,8 @@ function loadProducts() {
     products.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="product-img">
+      productCard.innerHTML = `
+    <img src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}" alt="${product.name}" class="product-img">
             <div class="product-info">
                 <h3 class="product-title">${product.name}</h3>
                 <p class="product-price">Rp ${product.price.toLocaleString('id-ID')}</p>
