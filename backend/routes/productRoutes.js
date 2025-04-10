@@ -88,7 +88,7 @@ router.post('/products', upload.single('image'), async (req, res) => {
 });
 
 // PUT update product
-router.put('/:id', upload.single('image'), async (req, res) => {
+router.put('/products/:id', upload.single('image'), async (req, res) => {
   try {
     const { name, price, description, sizes = '' } = req.body;
 
@@ -120,7 +120,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 });
 
 // DELETE product
-router.delete('/:id', async (req, res) => {
+router.delete('/products/:id', async (req, res) => {
   try {
     const deleted = await Product.findByIdAndDelete(req.params.id);
 
