@@ -252,10 +252,10 @@ adminProductForm.addEventListener('submit', async (e) => {
     if (fileInput.files && fileInput.files.length > 0) {
         const formData = new FormData();
         formData.append('file', fileInput.files[0]);
-        formData.append('upload_preset', 'YOUR_UPLOAD_PRESET'); // Ganti!
+        formData.append('upload_preset', 'ml_default'); // Ganti!
 
         try {
-            const cloudRes = await fetch('https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload', {
+            const cloudRes = await fetch('https://api.cloudinary.com/v1_1/dcza1lxj0/image/upload', {
                 method: 'POST',
                 body: formData
             });
