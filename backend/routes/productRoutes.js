@@ -62,11 +62,10 @@ router.get('/products', async (req, res) => {
 });
 
 // POST new product with image upload
-router.post('/products',  async (req, res) => {
+router.post('/products', async (req, res) => { // upload.single('image') DIHAPUS
   try {
-     console.log('🖼️ FILE YANG DIUPLOAD:', req.file); // 👉 Tambahkan ini
-    console.log('📦 BODY YANG DITERIMA:', req.body);  // 👉 Tambahkan ini
-    const { name, price, description, sizes = '' } = req.body;
+    console.log('📦 BODY JSON YANG DITERIMA:', req.body); // Body sekarang JSON
+    const { name, price, description, sizes = '', image } = req.body; // Ambil 'image' dari body
 
     // Validasi input
     if (!name || !price) {
@@ -77,22 +76,22 @@ router.post('/products',  async (req, res) => {
       name,
       price: parseFloat(price),
       description: description || '',
-      image: req.file?.path || null,
+      image: image || null, // Gunakan URL dari req.body
       sizes: sizes ? sizes.split(',').map(size => size.trim()) : []
     });
 
     const savedProduct = await newProduct.save();
-    res.status(201).json(savedProduct); // Biasanya JSON dikirim di sini
-
+    res.status(201).json(savedProduct);
   } catch (err) {
     handleError(res, err, 'Gagal menambah produk');
   }
 });
 
 // PUT update product
-router.put('/products/:id',  async (req, res) => {
+router.put('/products/:id', async (req, res) => { // upload.single('image') DIHAPUS
   try {
-    const { name, price, description, sizes = '' } = req.body;
+    console.log('📦 BODY JSON YANG DITERIMA:', req.body); // Body sekarang JSON
+    const { name, price, description, sizes = '', image } = req.body; // Ambil 'image' dari body
 
     const updateData = {
       name,
@@ -101,9 +100,10 @@ router.put('/products/:id',  async (req, res) => {
       sizes: sizes ? sizes.split(',').map(size => size.trim()) : []
     };
 
-    if (req.file) {
-      updateData.image = req.file.path;
+   if (req.body.hasOwnProperty('image')) { // Lebih eksplisit: cek jika properti 'image' ada
+       updateData.image = image; // Bisa URL atau null
     }
+    // Jika properti 'image' tidak ada di req.body, field image di DB tidak akan diubah
 
     const updated = await Product.findByIdAndUpdate(
       req.params.id,
@@ -115,12 +115,11 @@ router.put('/products/:id',  async (req, res) => {
       return res.status(404).json({ error: 'Produk tidak ditemukan' });
     }
 
-    res.json(updated); // Biasanya JSON dikirim di sini
+    res.json(updated);
   } catch (err) {
     handleError(res, err, 'Gagal update produk');
   }
 });
-
 // DELETE product
 router.delete('/products/:id', async (req, res) => {
   try {
