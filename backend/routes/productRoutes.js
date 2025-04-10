@@ -30,7 +30,7 @@ const handleError = (res, err, defaultMessage = 'Terjadi kesalahan') => {
 };
 
 // GET all products
-router.get('/', async (req, res) => {
+router.get('/products', async (req, res) => {
   try {
     const products = await Product.find({}); // .lean() dihapus kecuali benar-benar perlu
     
@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST new product with image upload
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/products', upload.single('image'), async (req, res) => {
   try {
     const { name, price, description, sizes = '' } = req.body;
 
