@@ -3,20 +3,24 @@ let products = [];
 async function fetchProductsFromServer() {
     try {
         const res = await fetch('/api/products');
-        console.log('Response Status:', res.status); // Tambahkan ini
-        console.log('Response Status Text:', res.statusText); // Tambahkan ini
-        console.log('Response Headers:', res.headers); // Tambahkan ini
-        console.log('Response:', res); // Tambahkan ini
-        const text = await res.text();
-        console.log('Response Text:', text); // Tambahkan ini
-        products = await res.json();
+        console.log('Response Status:', res.status);
+        console.log('Response Status Text:', res.statusText);
+        console.log('Response Headers:', res.headers);
+        console.log('Response:', res);
+
+        const json = await res.json(); // ✅ langsung ambil JSON-nya
+        console.log('Response JSON:', json);
+
+        products = json.data; // Ambil array produk dari response
         console.log('Produk dari server:', products);
+
         loadProducts();
         loadAdminProducts();
     } catch (err) {
         console.error('Gagal ambil data produk:', err);
     }
 }
+
 
 // DOM Elements
 const productContainer = document.getElementById('product-container');
