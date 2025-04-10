@@ -62,7 +62,7 @@ router.get('/products', async (req, res) => {
 });
 
 // POST new product with image upload
-router.post('/products', upload.single('image'), async (req, res) => {
+router.post('/products',  async (req, res) => {
   try {
      console.log('🖼️ FILE YANG DIUPLOAD:', req.file); // 👉 Tambahkan ini
     console.log('📦 BODY YANG DITERIMA:', req.body);  // 👉 Tambahkan ini
