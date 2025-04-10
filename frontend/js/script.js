@@ -57,6 +57,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 function loadProducts() {
     productContainer.innerHTML = '';
     products.forEach(product => {
+    console.log("Gambar produk:",product.image);
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
       productCard.innerHTML = `
