@@ -274,6 +274,11 @@ adminProductForm.addEventListener('submit', async (e) => {
             return;
         }
     }
+    // Cek kalau imageUrl masih kosong/null
+if (!imageUrl) {
+    alert('Gambar belum tersedia. Mohon upload ulang atau refresh halaman.');
+    return;
+}
 
     // Kirim data produk ke backend
     try {
